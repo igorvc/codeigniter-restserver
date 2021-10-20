@@ -204,7 +204,7 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 (2, 1, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, 0, 0, NULL, 0);
 
 --
--- 3º Key access specific method
+-- 3º Key access only specific method
 --
 
 INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
@@ -232,11 +232,12 @@ INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_c
 (1, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, '/Api', '', NULL);
 
 --
--- 3º Key access specific method
+-- 3º Key access only specific method /Api/users
 --
 
 INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
-(1, 'a4b5d7002911890ae82acc3e54392c5f', 0, '/Api', '/Api/users', NULL);
+(1, 'a4b5d7002911890ae82acc3e54392c5f', 0, '/Api', 'users', NULL);
 
 
 ```
+
