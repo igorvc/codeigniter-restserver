@@ -1,4 +1,4 @@
-# CodeIgniter RestServer FGAC
+# CodeIgniter RestServer Fine-grained Access Control (FGAC)
 
 [![StyleCI](https://github.styleci.io/repos/230589/shield?branch=master)](https://github.styleci.io/repos/230589)
 
