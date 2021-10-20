@@ -12,10 +12,13 @@ The original code only allow you to control Access to Controllers, but we need m
 
 - PHP 7.2 or greater
 - CodeIgniter 3.1.11+
+- rmccue/requests
 
 ## Installation
 
 git clone https://github.com/igorvc/codeigniter-restserver.git
+composer require rmccue/requests
+
 
 ## Usage
 
@@ -133,10 +136,107 @@ class Api extends RestController {
             }
         }
     }
+
+    public function usersRestrict_get()
+    {
+        // Users from a data store e.g. database
+        $users = [
+            ['id' => 0, 'name' => 'John', 'email' => 'john@example.com'],
+            ['id' => 1, 'name' => 'Jim', 'email' => 'jim@example.com'],
+        ];
+
+        $id = $this->get( 'id' );
+
+        if ( $id === null )
+        {
+            // Check if the users data store contains users
+            if ( $users )
+            {
+                // Set the response and exit
+                $this->response( $users, 200 );
+            }
+            else
+            {
+                // Set the response and exit
+                $this->response( [
+                    'status' => false,
+                    'message' => 'No users were found'
+                ], 404 );
+            }
+        }
+        else
+        {
+            if ( array_key_exists( $id, $users ) )
+            {
+                $this->response( $users[$id], 200 );
+            }
+            else
+            {
+                $this->response( [
+                    'status' => false,
+                    'message' => 'No such user found'
+                ], 404 );
+            }
+        }
+    }
 }
 ```
 
 ## Basic FGAC GET example
 
 
+Step 1: Create Database Keys to access
 
+```php
+
+--
+-- 1º Key, root, access all Controller/Method
+--
+
+INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
+(1, 1, 'a50348e70dc84e99496db527055a65db', 0, 0, 0, NULL, 0);
+
+--
+-- 2º Key access specific Controller, all methods in that controller
+--
+
+INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
+(2, 1, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, 0, 0, NULL, 0);
+
+--
+-- 3º Key access specific method
+--
+
+INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES
+(3, 1, 'a4b5d7002911890ae82acc3e54392c5f', 0, 0, 0, NULL, 0);
+
+
+```
+
+Step 2: Create Database REST Method Access Control (FGAC) controlls to keys
+
+```php
+
+--
+-- 1º Key, root, access all Controller/Method
+--
+
+INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
+(1, 'a50348e70dc84e99496db527055a65db', 1, '', '', NULL);
+
+--
+-- 2º Key access specific Controller, all methods in that controller
+--
+
+INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
+(1, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, '/Api', '', NULL);
+
+--
+-- 3º Key access specific method
+--
+
+INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
+(1, 'a4b5d7002911890ae82acc3e54392c5f', 0, '/Api', '/Api/users', NULL);
+
+
+```
