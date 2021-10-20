@@ -1,8 +1,12 @@
-# CodeIgniter RestServer
+# CodeIgniter RestServer FGAC
 
 [![StyleCI](https://github.styleci.io/repos/230589/shield?branch=master)](https://github.styleci.io/repos/230589)
 
 A fully RESTful server implementation for CodeIgniter using one library, one config file and one controller.
+
+In this Fork we implement a *Fine-grained Access Control* (FGAC) to allow Controllers and Methods.
+
+The original code only allow you to control Access to Controllers, but we need more!
 
 ## Requirements
 
@@ -11,23 +15,10 @@ A fully RESTful server implementation for CodeIgniter using one library, one con
 
 ## Installation
 
-```sh
-composer require chriskacerguis/codeigniter-restserver
-```
+git clone https://github.com/igorvc/codeigniter-restserver.git
 
 ## Usage
 
-CodeIgniter Rest Server is available on [Packagist](https://packagist.org/packages/chriskacerguis/codeigniter-restserver) (using semantic versioning), and installation via composer is the recommended way to install Codeigniter Rest Server. Just add this line to your `composer.json` file:
-
-```json
-"chriskacerguis/codeigniter-restserver": "^3.1"
-```
-
-or run
-
-```sh
-composer require chriskacerguis/codeigniter-restserver
-```
 
 Note that you will need to copy `rest.php` to your `config` directory (e.g. `application/config`)
 
@@ -41,6 +32,42 @@ Step 2: Extend your controller
 
 ```php
 class Example extends RestController
+```
+
+Step 3: Configure rest.php to use REST Enable Keys and REST Method Access Control
+
+```php
+$config['rest_enable_keys'] = true;
+$config['rest_enable_access'] = true;
+```
+
+Step 4: Add Table *REST Enable Keys* and *REST Method Access Control* (FGAC version)
+
+```php
+| Default table schema:
+|   CREATE TABLE `keys` (
+|       `id` INT(11) NOT NULL AUTO_INCREMENT,
+|       `user_id` INT(11) NOT NULL,
+|       `key` VARCHAR(40) NOT NULL,
+|       `level` INT(2) NOT NULL,
+|       `ignore_limits` TINYINT(1) NOT NULL DEFAULT '0',
+|       `is_private_key` TINYINT(1)  NOT NULL DEFAULT '0',
+|       `ip_addresses` TEXT NULL DEFAULT NULL,
+|       `date_created` INT(11) NOT NULL,
+|       PRIMARY KEY (`id`)
+|   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+|
+|   CREATE TABLE `access` (
+|       `id` INT(11) unsigned NOT NULL AUTO_INCREMENT,
+|       `key` VARCHAR(40) NOT NULL DEFAULT '',
+|       `all_access` TINYINT(1) NOT NULL DEFAULT '0',
+|       `controller` VARCHAR(50) NOT NULL DEFAULT '',
+|       `method` VARCHAR(200) NOT NULL DEFAULT '',
+|       `date_created` DATETIME DEFAULT NULL,
+|       `date_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+|       PRIMARY KEY (`id`)
+|    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+|
 ```
 
 ## Basic GET example
@@ -108,3 +135,8 @@ class Api extends RestController {
     }
 }
 ```
+
+## Basic FGAC GET example
+
+
+
