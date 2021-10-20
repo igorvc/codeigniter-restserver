@@ -4,7 +4,7 @@
 
 A fully RESTful server implementation for CodeIgniter using one library, one config file and one controller.
 
-In this Fork we implement a *Fine-grained Access Control* (FGAC) to allow controll over Controllers and Methods.
+In this Fork we implement a *Fine-grained Access Control* (FGAC) to allow control over *Controllers and Methods*.
 
 The original code only allow you to control Access to *Controllers*, but we need more!
 
