@@ -1,4 +1,4 @@
-# CodeIgniter RestServer Fine-grained Access Control (FGAC)
+# CodeIgniter RestServer with Fine-grained Access Control (FGAC)
 
 [![StyleCI](https://github.styleci.io/repos/230589/shield?branch=master)](https://github.styleci.io/repos/230589)
 
@@ -22,7 +22,8 @@ cd codeigniter-restserver
 
 composer require rmccue/requests
 
-composer require chriskacerguis/codeigniter-restserver
+# dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"
+composer require chriskacerguis/codeigniter-restserver "dev-master"
 
 
 ## Usage
@@ -53,6 +54,16 @@ vim application/config/rest.php
 
 
 # Verify that you acesses your application!
+
+#Install our code overwriting vendor/
+
+
+# Run tests and Have fun!
+
+cd src
+
+php fgacTest.php
+
 
 ```
 

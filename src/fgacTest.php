@@ -12,24 +12,40 @@
 
 
 
-require APPPATH . '../vendor/autoload.php';
+require '../vendor/autoload.php';
+
+function logTest($msg) {
+   echo "\n";
+   echo date('Y-m-d H:i:s') . " - $msg";
+   echo "\n";
+}
 
 $options = array(
    'timeout' => 60000,
  );
    
+
+###################################################################################################################
+# Test 1 -  Invalid API key                                                                                       #
+################################################################################################################### 
 $apikey = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
     
-//executando a consulta
-$response = Requests::get('http://localhost/cirs/Api/users', array('X-API-KEY' => $apikey), $options);
+//Consult
+$response = Requests::get('http://localhost/cirs/index.php/Api/users', array('X-API-KEY' => $apikey), $options);
 
-//processando a resposta
+logTest('In this example, we need to receive Error Response: {"status":false,"error":"Invalid API key "}');
+//processing
 if(isset($response->success) && $response->success == true){
-   echo 'Ok!';
-   echo 'Response: ', print_r($response->body, true); 
+   logTest('Ok!');
+   logTest('Response: ' . print_r($response->body, true)); 
 } else {
-   echo 'Error';
-   echo 'Response: ', print_r($response->body, true);
+   logTest('Error');
+   logTest('Response: ' . print_r($response->body, true));
 }
+
+
+
+
+
 
     
