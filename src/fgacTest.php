@@ -11,3 +11,23 @@
  */
 
 
+
+require APPPATH . '../vendor/autoload.php';
+
+
+   
+$apikey = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+    
+    //executando a consulta
+    $response = Requests::get('https://ws.icmc.usp.br/wsicmc/Grad/listarCursos', array('ICMC-SAPI-KEY' => $apikey), $options);
+
+    //processando a resposta
+    if(isset($response->success) && $response->success == true){
+       echo 'Ok!';
+       echo 'Esta é a resposta: ', print_r($response->body, true); 
+    } else {
+       echo 'Erro';
+       echo 'Esta foi o erro apontado: ', print_r($response->body, true);
+    }
+
+    
