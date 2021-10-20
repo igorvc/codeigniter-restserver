@@ -18,7 +18,11 @@ The original code only allow you to control Access to Controllers, but we need m
 
 git clone https://github.com/igorvc/codeigniter-restserver.git
 
+cd codeigniter-restserver
+
 composer require rmccue/requests
+
+composer require chriskacerguis/codeigniter-restserver
 
 
 ## Usage
