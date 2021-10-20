@@ -23,8 +23,16 @@ composer require rmccue/requests
 
 ## Usage
 
+Step 0: Add CodeIgniter 3.1.11+ and configure it!
 
-Note that you will need to copy `rest.php` to your `config` directory (e.g. `application/config`)
+```shell
+cd codeigniter-restserver
+wget https://api.github.com/repos/bcit-ci/CodeIgniter/zipball/refs/tags/3.1.11 -O ci311.zip
+
+
+```
+
+Note that you will need to copy `rest.php` to your CI `config` directory (e.g. `application/config`)
 
 Step 1: Add this to your controller (should be before any of your code)
 
