@@ -28,17 +28,27 @@ Step 0: Add CodeIgniter 3.1.11+ and configure it!
 ```shell
 # Go to path that git clone....
 cd codeigniter-restserver
+
 wget https://api.github.com/repos/bcit-ci/CodeIgniter/zipball/refs/tags/3.1.11 -O ci311.zip
+
 unzip ci311.zip
+
 mv -f bcit-ci-*/* .
+
 rm -rf bcit-ci-*
+
 rm -f ci311.zip
 
-#configure database access
+# Configure database access
 vim application/config/database.php
 
-#copy and configure rest.php
+# Copy and configure rest.php
 cp src/rest.php application/config/
+
+vim application/config/rest.php
+
+
+# Verify that you acesses your application!
 
 ```
 
