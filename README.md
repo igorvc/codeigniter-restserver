@@ -4,9 +4,9 @@
 
 A fully RESTful server implementation for CodeIgniter using one library, one config file and one controller.
 
-In this Fork we implement a *Fine-grained Access Control* (FGAC) to allow Controllers and Methods.
+In this Fork we implement a *Fine-grained Access Control* (FGAC) to allow controll over Controllers and Methods.
 
-The original code only allow you to control Access to Controllers, but we need more!
+The original code only allow you to control Access to *Controllers*, but we need more!
 
 ## Requirements
 
@@ -56,8 +56,6 @@ vim application/config/rest.php
 
 ```
 
-Note that you will need to copy `rest.php` to your CI `config` directory (e.g. `application/config`)
-
 Step 1: Add this to your controller (should be before any of your code)
 
 ```php
@@ -79,31 +77,31 @@ $config['rest_enable_access'] = true;
 
 Step 4: Add Table *REST Enable Keys* and *REST Method Access Control* (FGAC version)
 
-```php
-| Default table schema:
-|   CREATE TABLE `keys` (
-|       `id` INT(11) NOT NULL AUTO_INCREMENT,
-|       `user_id` INT(11) NOT NULL,
-|       `key` VARCHAR(40) NOT NULL,
-|       `level` INT(2) NOT NULL,
-|       `ignore_limits` TINYINT(1) NOT NULL DEFAULT '0',
-|       `is_private_key` TINYINT(1)  NOT NULL DEFAULT '0',
-|       `ip_addresses` TEXT NULL DEFAULT NULL,
-|       `date_created` INT(11) NOT NULL,
-|       PRIMARY KEY (`id`)
-|   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-|
-|   CREATE TABLE `access` (
-|       `id` INT(11) unsigned NOT NULL AUTO_INCREMENT,
-|       `key` VARCHAR(40) NOT NULL DEFAULT '',
-|       `all_access` TINYINT(1) NOT NULL DEFAULT '0',
-|       `controller` VARCHAR(50) NOT NULL DEFAULT '',
-|       `method` VARCHAR(200) NOT NULL DEFAULT '',
-|       `date_created` DATETIME DEFAULT NULL,
-|       `date_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-|       PRIMARY KEY (`id`)
-|    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-|
+```sql
+ Default table schema:
+   CREATE TABLE `keys` (
+       `id` INT(11) NOT NULL AUTO_INCREMENT,
+       `user_id` INT(11) NOT NULL,
+       `key` VARCHAR(40) NOT NULL,
+       `level` INT(2) NOT NULL,
+       `ignore_limits` TINYINT(1) NOT NULL DEFAULT '0',
+       `is_private_key` TINYINT(1)  NOT NULL DEFAULT '0',
+       `ip_addresses` TEXT NULL DEFAULT NULL,
+       `date_created` INT(11) NOT NULL,
+       PRIMARY KEY (`id`)
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+   CREATE TABLE `access` (
+       `id` INT(11) unsigned NOT NULL AUTO_INCREMENT,
+       `key` VARCHAR(40) NOT NULL DEFAULT '',
+       `all_access` TINYINT(1) NOT NULL DEFAULT '0',
+       `controller` VARCHAR(50) NOT NULL DEFAULT '',
+       `method` VARCHAR(200) NOT NULL DEFAULT '',
+       `date_created` DATETIME DEFAULT NULL,
+       `date_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+       PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 ```
 
 ## Basic GET example
@@ -220,7 +218,7 @@ class Api extends RestController {
 
 Step 1: Create Database Keys to access
 
-```php
+```sql
 
 --
 -- 1º Key, root, access all Controller/Method
@@ -248,7 +246,7 @@ INSERT INTO `keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_privat
 
 Step 2: Create Database REST Method Access Control (FGAC) controlls to keys
 
-```php
+```sql
 
 --
 -- 1º Key, root, access all Controller/Method
