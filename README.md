@@ -33,6 +33,13 @@ unzip ci311.zip
 mv -f bcit-ci-*/* .
 rm -rf bcit-ci-*
 rm -f ci311.zip
+
+#configure database access
+vim application/config/database.php
+
+#copy and configure rest.php
+cp src/rest.php application/config/
+
 ```
 
 Note that you will need to copy `rest.php` to your CI `config` directory (e.g. `application/config`)
