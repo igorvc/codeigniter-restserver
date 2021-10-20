@@ -323,7 +323,7 @@ $config['rest_keys_table'] = 'keys';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_keys'] = false;
+$config['rest_enable_keys'] = false; // true to FGAC
 
 /*
 |--------------------------------------------------------------------------
@@ -430,13 +430,14 @@ $config['rest_logs_table'] = 'logs';
 |       `key` VARCHAR(40) NOT NULL DEFAULT '',
 |       `all_access` TINYINT(1) NOT NULL DEFAULT '0',
 |       `controller` VARCHAR(50) NOT NULL DEFAULT '',
+|       `method` VARCHAR(200) NOT NULL DEFAULT '',
 |       `date_created` DATETIME DEFAULT NULL,
 |       `date_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 |       PRIMARY KEY (`id`)
 |    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_access'] = false;
+$config['rest_enable_access'] = false; // true to FGAC
 
 /*
 |--------------------------------------------------------------------------

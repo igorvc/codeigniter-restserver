@@ -229,14 +229,14 @@ INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_c
 --
 
 INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
-(1, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, '/Api', '', NULL);
+(2, 'c5ba6c0463e35622f9c89bbda027b9b9', 0, '/Api', '', NULL);
 
 --
 -- 3º Key access only specific method /Api/users
 --
 
 INSERT INTO `access` (`id`, `key`, `all_access`, `controller`, `method`, `date_created`) VALUES
-(1, 'a4b5d7002911890ae82acc3e54392c5f', 0, '/Api', 'users', NULL);
+(3, 'a4b5d7002911890ae82acc3e54392c5f', 0, '/Api', 'users', NULL);
 
 
 ```
