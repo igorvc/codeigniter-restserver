@@ -26,10 +26,13 @@ composer require rmccue/requests
 Step 0: Add CodeIgniter 3.1.11+ and configure it!
 
 ```shell
+# Go to path that git clone....
 cd codeigniter-restserver
 wget https://api.github.com/repos/bcit-ci/CodeIgniter/zipball/refs/tags/3.1.11 -O ci311.zip
-
-
+unzip ci311.zip
+mv -f bcit-ci-*/* .
+rm -rf bcit-ci-*
+rm -f ci311.zip
 ```
 
 Note that you will need to copy `rest.php` to your CI `config` directory (e.g. `application/config`)
