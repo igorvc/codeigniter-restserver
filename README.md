@@ -23,6 +23,7 @@ cd codeigniter-restserver
 composer require rmccue/requests
 
 *dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"*
+
 composer require chriskacerguis/codeigniter-restserver "dev-master"
 
 
