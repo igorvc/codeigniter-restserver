@@ -22,7 +22,7 @@ cd codeigniter-restserver
 
 composer require rmccue/requests
 
-# dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"
+*dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"*
 composer require chriskacerguis/codeigniter-restserver "dev-master"
 
 
@@ -47,16 +47,20 @@ rm -f ci311.zip
 # Configure database access
 vim application/config/database.php
 
+# load Database rules...
+
 # Copy and configure rest.php
 cp src/rest.php application/config/
 
 vim application/config/rest.php
 
 
-# Verify that you acesses your application!
+# Verify that you access your application!
 
 #Install our code overwriting vendor/
 
+# copy our example Service
+cp src/Api.php application/controllers/
 
 # Run tests and Have fun!
 
