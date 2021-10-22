@@ -22,7 +22,7 @@ cd codeigniter-restserver
 
 composer require rmccue/requests
 
-*dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"*
+(*dev-master because "https://github.com/chriskacerguis/codeigniter-restserver/issues/1065"*)
 
 composer require chriskacerguis/codeigniter-restserver "dev-master"
 
@@ -48,13 +48,12 @@ rm -f ci311.zip
 # Configure database access
 vim application/config/database.php
 
-# load Database rules...
-
 # Copy and configure rest.php
 cp src/rest.php application/config/
 
 vim application/config/rest.php
 
+# load Database rules... that you see in application/config/rest.php or in this text...
 
 # Verify that you access your application!
 
